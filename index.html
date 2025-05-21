@@ -4,29 +4,47 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bhargav Tharun | Cloud & DevOps Engineer</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    /* Canvas full screen behind content */
+    #bgCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background: #0d0d0d; /* dark background behind canvas */
+    }
+    /* Ensure body background is transparent for canvas to show */
+    body {
+      background: transparent;
+      color: #111827; /* Tailwind's gray-900 fallback */
+    }
+  </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
-  <header class="bg-blue-900 text-white py-4 shadow-md">
-  <div class="container mx-auto flex items-center space-x-4 px-4">
-    <img src="profile.jpg" alt="Bhargav Tharun" class="w-16 h-16 rounded-full border-2 border-white shadow" />
-    <div>
-      <h1 class="text-2xl font-bold">Madala Bhargav Tharun</h1>
-      <p class="text-sm">Cloud & DevOps Engineer | Azure | GCP | Kubernetes</p>
+<body>
+  <canvas id="bgCanvas"></canvas>
+
+  <header class="bg-blue-900 bg-opacity-90 text-white py-4 shadow-md">
+    <div class="container mx-auto flex items-center space-x-4 px-4">
+      <img src="profile.jpg" alt="Bhargav Tharun" class="w-16 h-16 rounded-full border-2 border-white shadow" />
+      <div>
+        <h1 class="text-2xl font-bold">Madala Bhargav Tharun</h1>
+        <p class="text-sm">Cloud & DevOps Engineer | Azure | GCP | Kubernetes</p>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-
-  <nav class="bg-blue-700 text-white text-center py-2 sticky top-0 z-10">
+  <nav class="bg-blue-700 bg-opacity-90 text-white text-center py-2 sticky top-0 z-10">
     <a href="#about" class="mx-4 hover:underline">About</a>
     <a href="#projects" class="mx-4 hover:underline">Projects</a>
     <a href="#blog" class="mx-4 hover:underline">Blog</a>
     <a href="#contact" class="mx-4 hover:underline">Contact</a>
   </nav>
 
-  <main class="container mx-auto p-6">
+  <main class="container mx-auto p-6 relative z-10">
     <section id="about" class="my-8">
       <h2 class="text-2xl font-semibold text-blue-800 mb-4">About Me</h2>
       <p class="text-lg">Experienced Azure & GCP Cloud and DevOps Engineer with a strong background in designing, deploying, and automating secure, scalable, and resilient cloud infrastructure.</p>
@@ -35,11 +53,11 @@
     <section id="projects" class="my-8">
       <h2 class="text-2xl font-semibold text-blue-800 mb-4">Projects</h2>
       <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-white p-4 rounded-lg shadow">
+        <div class="bg-white bg-opacity-90 p-4 rounded-lg shadow">
           <h3 class="text-xl font-bold">Autonomous Medical Robot</h3>
           <p>Object detection, face recognition, SLAM, and pose estimation in a medical setting.</p>
         </div>
-        <div class="bg-white p-4 rounded-lg shadow">
+        <div class="bg-white bg-opacity-90 p-4 rounded-lg shadow">
           <h3 class="text-xl font-bold">ETL Data Pipeline with Azure & Snowflake</h3>
           <p>Built scalable pipelines, integrated data sources, and visualized dashboards for critical insights.</p>
         </div>
@@ -60,8 +78,88 @@
     </section>
   </main>
 
-  <footer class="text-center py-4 bg-gray-200 text-sm text-gray-600">
+  <footer class="text-center py-4 bg-gray-200 text-sm text-gray-600 relative z-10">
     &copy; 2025 Bhargav Tharun. All rights reserved.
   </footer>
+
+  <script>
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    function init() {
+      resize();
+      particles = [];
+      for(let i = 0; i < 100; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          size: Math.random() * 2 + 1,
+        });
+      }
+    }
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw particles
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Move particles
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Wrap around screen edges
+        if(p.x < 0) p.x = width;
+        if(p.x > width) p.x = 0;
+        if(p.y < 0) p.y = height;
+        if(p.y > height) p.y = 0;
+      });
+
+      // Draw connecting lines if close enough
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+      for(let i = 0; i < particles.length; i++) {
+        for(let j = i + 1; j < particles.length; j++) {
+          let dx = particles[i].x - particles[j].x;
+          let dy = particles[i].y - particles[j].y;
+          let dist = Math.sqrt(dx*dx + dy*dy);
+          if(dist < 100) {
+            ctx.lineWidth = (1 - dist / 100) * 0.5;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      draw();
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      resize();
+      init();
+    });
+
+    init();
+    animate();
+  </script>
 </body>
 </html>
