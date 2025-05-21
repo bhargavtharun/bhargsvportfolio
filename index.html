@@ -8,48 +8,6 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables for Theme */
-        :root {
-            --bg-primary: #0d1117;
-            --bg-secondary: #0f0c29;
-            --bg-tertiary: #302b63;
-            --bg-quaternary: #24243e;
-            --text-primary: #e2e8f0;
-            --text-secondary: #a0aec0;
-            --accent-blue: #4299e1;
-            --accent-blue-dark: #2b6cb0;
-            --accent-teal: #38b2ac;
-            --accent-yellow: #f6ad55;
-            --card-bg-opacity: 0.15;
-            --header-bg-opacity: 0.8;
-            --nav-bg-opacity: 0.8;
-            --shadow-color: rgba(0, 0, 0, 0.5);
-            --video-overlay-bg: rgba(0, 0, 0, 0.6);
-            --backdrop-blur: blur(3px);
-            --border-color: rgba(66, 153, 225, 0.2);
-        }
-
-        /* Light Theme Variables */
-        body.light-theme {
-            --bg-primary: #f0f2f5;
-            --bg-secondary: #e0e2e6;
-            --bg-tertiary: #c0c2c6;
-            --bg-quaternary: #d0d2d6;
-            --text-primary: #2d3748;
-            --text-secondary: #4a5568;
-            --accent-blue: #3182ce;
-            --accent-blue-dark: #2c5282;
-            --accent-teal: #38a169;
-            --accent-yellow: #d69e2e;
-            --card-bg-opacity: 0.1;
-            --header-bg-opacity: 0.9;
-            --nav-bg-opacity: 0.9;
-            --shadow-color: rgba(0, 0, 0, 0.2);
-            --video-overlay-bg: rgba(255, 255, 255, 0.7);
-            --backdrop-blur: blur(2px);
-            --border-color: rgba(49, 130, 206, 0.2);
-        }
-
         /* Base styles for the body */
         body, html {
             margin: 0;
@@ -58,10 +16,9 @@
             font-family: 'Inter', sans-serif;
             height: 100vh; /* Full viewport height */
             width: 100vw; /* Full viewport width */
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
+            background-color: #0d1117; /* Default dark background */
+            color: #e2e8f0; /* Light text color for contrast */
             scroll-behavior: smooth; /* Smooth scrolling for anchor links */
-            transition: background-color 0.5s ease, color 0.5s ease; /* Smooth theme transition */
         }
 
         /* Video background container */
@@ -94,10 +51,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--video-overlay-bg);
-            backdrop-filter: var(--backdrop-blur);
+            background: rgba(0, 0, 0, 0.6); /* Darker overlay for better contrast */
+            backdrop-filter: blur(3px); /* Subtle blur for depth */
             z-index: -2; /* Above the video, below CSS elements and content */
-            transition: background 0.5s ease, backdrop-filter 0.5s ease; /* Smooth theme transition */
         }
 
         /* Container for CSS-based tech elements */
@@ -110,18 +66,6 @@
             z-index: -1; /* Above the video overlay, below main content */
             overflow: hidden;
             will-change: transform; /* Optimize for parallax */
-            transition: transform 0.1s ease-out; /* Smooth parallax movement */
-        }
-
-        /* Canvas for mouse trail particles */
-        #mouseTrailCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10; /* Above all background elements, below main content */
-            pointer-events: none; /* Allows clicks to pass through to elements below */
         }
 
         /* General styling for all background elements (chips, circuit boards, and new icons) */
@@ -143,15 +87,13 @@
         /* --- Semiconductor Technology Styles --- */
         .chip {
             width: 110px; height: 90px;
-            background-color: var(--bg-primary); border: 2px solid var(--text-secondary); border-radius: 10px;
-            box-shadow: 0 0 12px var(--accent-blue); position: relative; overflow: hidden;
+            background-color: #1a202c; border: 2px solid #4a5568; border-radius: 10px;
+            box-shadow: 0 0 12px rgba(66, 153, 225, 0.6); position: relative; overflow: hidden;
             animation: glow 2.5s infinite alternate;
-            transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
         }
         .chip-line {
-            position: absolute; background-color: var(--accent-blue); box-shadow: 0 0 6px var(--accent-blue);
+            position: absolute; background-color: #4299e1; box-shadow: 0 0 6px #4299e1;
             animation: chip-line-flow 5s infinite linear;
-            transition: background-color 0.5s ease, box-shadow 0.5s ease;
         }
         .chip-line:nth-child(1) { top: 12px; left: 10%; width: 80%; height: 3px; }
         .chip-line:nth-child(2) { top: 30px; left: 5%; width: 90%; height: 3px; animation-delay: 0.7s;}
@@ -161,14 +103,12 @@
 
         .circuit-board {
             width: 160px; height: 130px;
-            background-color: var(--bg-primary); border: 2px solid var(--text-secondary); border-radius: 12px;
+            background-color: #1a202c; border: 2px solid #4a5568; border-radius: 12px;
             position: relative; overflow: hidden; transform: rotate(7deg);
-            transition: background-color 0.5s ease, border-color 0.5s ease;
         }
         .circuit-line {
-            position: absolute; background-color: var(--accent-teal); box-shadow: 0 0 6px var(--accent-teal);
+            position: absolute; background-color: #38b2ac; box-shadow: 0 0 6px #38b2ac;
             animation: circuit-flow 4.5s infinite linear;
-            transition: background-color 0.5s ease, box-shadow 0.5s ease;
         }
         .circuit-line:nth-child(1) { top: 15%; left: 10%; width: 80%; height: 4px; transform: rotate(12deg); }
         .circuit-line:nth-child(2) { top: 35%; left: 5%; width: 90%; height: 4px; transform: rotate(-7deg); animation-delay: 1.2s; }
@@ -178,10 +118,9 @@
         /* --- Animated Tech Icons (Font Awesome based) --- */
         .tech-icon {
             font-size: 4rem; /* Larger icons for visibility */
-            color: var(--accent-blue); /* Blue glow */
-            text-shadow: 0 0 10px var(--accent-blue), 0 0 20px var(--accent-blue-dark);
+            color: rgba(66, 153, 225, 0.7); /* Blue glow */
+            text-shadow: 0 0 10px rgba(66, 153, 225, 0.5), 0 0 20px rgba(66, 153, 225, 0.3);
             animation: float-random 15s infinite ease-in-out alternate, pulse-icon 3s infinite alternate;
-            transition: color 0.5s ease, text-shadow 0.5s ease;
         }
         .tech-icon.float-1 { animation-duration: 18s; animation-delay: 0.5s; }
         .tech-icon.float-2 { animation-duration: 16s; animation-delay: 1s; }
@@ -237,15 +176,15 @@
             100% { transform: translate(0, 0); }
         }
         @keyframes glow {
-            0% { box-shadow: 0 0 12px var(--accent-blue); }
-            50% { box-shadow: 0 0 25px var(--accent-blue), 0 0 40px var(--accent-blue-dark); }
-            100% { box-shadow: 0 0 12px var(--accent-blue); }
+            0% { box-shadow: 0 0 12px rgba(66, 153, 225, 0.6); }
+            50% { box-shadow: 0 0 25px rgba(66, 153, 225, 0.9), 0 0 40px rgba(66, 153, 225, 0.4); }
+            100% { box-shadow: 0 0 12px rgba(66, 153, 225, 0.6); }
         }
         @keyframes chip-line-flow {
             0% { transform: translateX(0); } 100% { transform: translateX(25px); }
         }
         @keyframes circuit-flow {
-            0% { background-color: var(--accent-teal); } 50% { background-color: #81e6d9; } 100% { background-color: var(--accent-teal); }
+            0% { background-color: #38b2ac; } 50% { background-color: #81e6d9; } 100% { background-color: #38b2ac; }
         }
         @keyframes pulse-icon {
             0% { transform: scale(1); opacity: 0.7; }
@@ -268,14 +207,13 @@
             position: relative;
             z-index: 5; /* Ensure hero content is above background */
             padding: 2rem;
-            background: rgba(0, 0, 0, var(--card-bg-opacity)); /* Semi-transparent overlay for readability */
-            backdrop-filter: var(--backdrop-blur);
+            background: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay for readability */
+            backdrop-filter: blur(5px); /* Subtle blur behind content */
             border-radius: 1rem;
             margin: 2rem auto;
             max-width: 90%;
-            box-shadow: 0 15px 30px var(--shadow-color); /* Stronger shadow */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow */
             overflow: hidden; /* Important for background particles */
-            transition: background 0.5s ease, backdrop-filter 0.5s ease, box-shadow 0.5s ease;
         }
         .hero-text {
             animation: fadeInScale 1.5s ease-out forwards;
@@ -303,76 +241,12 @@
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
             border-radius: 0.75rem; /* Tailwind's rounded-lg */
             overflow: hidden; /* Ensures shadow doesn't clip */
-            border: 1px solid var(--border-color); /* Subtle border */
-            background-color: rgba(255, 255, 255, var(--card-bg-opacity));
+            border: 1px solid rgba(66, 153, 225, 0.2); /* Subtle border */
         }
         .project-card:hover {
             transform: translateY(-8px) scale(1.03); /* More pronounced lift */
-            box-shadow: 0 15px 30px var(--shadow-color); /* Stronger shadow */
-            background-color: rgba(255, 255, 255, calc(var(--card-bg-opacity) + 0.05)); /* Slight background change */
-        }
-
-        /* Project card details (hidden by default) */
-        .project-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
-            padding-top: 0;
-        }
-        .project-details.expanded {
-            max-height: 200px; /* Adjust as needed based on content */
-            padding-top: 1rem;
-        }
-
-        /* Scroll to Top Button */
-        #scrollToTopBtn {
-            display: none; /* Hidden by default */
-            position: fixed; /* Fixed position */
-            bottom: 20px; /* Place at the bottom */
-            right: 20px; /* Place at the right */
-            z-index: 100; /* High z-index to be on top */
-            background-color: var(--accent-blue);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 5px 15px var(--shadow-color);
-            transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
-            opacity: 0;
-            transform: scale(0.8);
-        }
-        #scrollToTopBtn:hover {
-            background-color: var(--accent-blue-dark);
-            transform: scale(1);
-        }
-        #scrollToTopBtn.show {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Theme Toggle Button */
-        #themeToggleBtn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
-            background-color: var(--accent-blue);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 3px 10px var(--shadow-color);
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        #themeToggleBtn:hover {
-            background-color: var(--accent-blue-dark);
-            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6); /* Stronger shadow */
+            background-color: rgba(255, 255, 255, 0.1); /* Slight background change */
         }
 
         /* Responsive adjustments */
@@ -404,20 +278,6 @@
             .project-card h3 {
                 font-size: 1.5rem;
             }
-            #scrollToTopBtn {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-                bottom: 15px;
-                right: 15px;
-            }
-            #themeToggleBtn {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
-                top: 15px;
-                right: 15px;
-            }
         }
     </style>
 </head>
@@ -446,8 +306,8 @@
             <div class="circuit-line"></div>
         </div>
         <div class="bg-element chip float-5" style="top: 5%; left: 40%;">
-            <div class="chip-line" style="background-color: var(--accent-yellow);"></div>
-            <div class="chip-line" style="background-color: var(--accent-yellow); animation-delay: 0.8s;"></div>
+            <div class="chip-line" style="background-color: #f6ad55;"></div>
+            <div class="chip-line" style="background-color: #f6ad55; animation-delay: 0.8s;"></div>
         </div>
 
         <div class="bg-element tech-icon float-random" style="top: 10%; left: 80%; --float-x: 10; --float-y: 5;">
@@ -466,48 +326,42 @@
             <i class="fas fa-network-wired"></i> </div>
     </div>
 
-    <canvas id="mouseTrailCanvas"></canvas>
-
-    <button id="themeToggleBtn" aria-label="Toggle theme">
-        <i class="fas fa-sun"></i>
-    </button>
-
-    <header class="bg-blue-900 bg-opacity-80 text-white py-4 shadow-md z-10 relative" style="background-color: rgba(var(--accent-blue-rgb), var(--header-bg-opacity)); transition: background-color 0.5s ease;">
+    <header class="bg-blue-900 bg-opacity-80 text-white py-4 shadow-md z-10 relative">
         <div class="container mx-auto flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 px-4">
-            <img src="https://placehold.co/64x64/2d3748/a0aec0?text=BT" alt="Bhargav Tharun" class="w-16 h-16 rounded-full border-2 border-white shadow profile-image-glow" />
+            <img src="https://placehold.co/64x64/2d3748/a0aec0?text=Your+Image" alt="Bhargav Tharun" class="w-40 h-40 rounded-full border-2 border-white shadow profile-image-glow" />
             <div>
-                <h1 class="text-2xl font-bold" style="color: var(--text-primary);">Madala Bhargav Tharun</h1>
-                <p class="text-sm" style="color: var(--text-secondary);">Cloud & DevOps Engineer | Azure | GCP | Kubernetes</p>
+                <h1 class="text-4xl font-bold">Madala Bhargav Tharun</h1>
+                <p class="text-sm">Cloud & DevOps Engineer | Azure | GCP | Kubernetes</p>
             </div>
         </div>
     </header>
 
-    <nav class="bg-blue-700 bg-opacity-80 text-white text-center py-2 sticky top-0 z-10 shadow-lg" style="background-color: rgba(var(--accent-blue-rgb), var(--nav-bg-opacity)); transition: background-color 0.5s ease;">
-        <a href="#hero" class="mx-4 hover:underline transition duration-200 ease-in-out" style="color: var(--text-primary);">Home</a>
-        <a href="#about" class="mx-4 hover:underline transition duration-200 ease-in-out" style="color: var(--text-primary);">About</a>
-        <a href="#projects" class="mx-4 hover:underline transition duration-200 ease-in-out" style="color: var(--text-primary);">Projects</a>
-        <a href="#blog" class="mx-4 hover:underline transition duration-200 ease-in-out" style="color: var(--text-primary);">Blog</a>
-        <a href="#contact" class="mx-4 hover:underline transition duration-200 ease-in-out" style="color: var(--text-primary);">Contact</a>
+    <nav class="bg-blue-700 bg-opacity-80 text-white text-center py-2 sticky top-0 z-10 shadow-lg">
+        <a href="#hero" class="mx-4 py-2 px-4 rounded-full hover:bg-blue-600 transition duration-200 ease-in-out">Home</a>
+        <a href="#about" class="mx-4 py-2 px-4 rounded-full hover:bg-blue-600 transition duration-200 ease-in-out">About</a>
+        <a href="#projects" class="mx-4 py-2 px-4 rounded-full hover:bg-blue-600 transition duration-200 ease-in-out">Projects</a>
+        <a href="#blog" class="mx-4 py-2 px-4 rounded-full hover:bg-blue-600 transition duration-200 ease-in-out">Blog</a>
+        <a href="#contact" class="mx-4 py-2 px-4 rounded-full hover:bg-blue-600 transition duration-200 ease-in-out">Contact</a>
     </nav>
 
     <main class="container mx-auto p-6 relative z-10">
         <section id="hero" class="hero-section">
             <div class="hero-text">
-                <h1 class="text-6xl sm:text-7xl font-extrabold mb-4 leading-tight" style="color: var(--text-primary);">
-                    Innovating at the <span class="typing-effect" data-text="Intersection" style="color: var(--accent-blue);"></span> of Science & Tech
+                <h1 class="text-7xl sm:text-8xl font-extrabold mb-4 text-white leading-tight" style="text-shadow: 0 0 10px rgba(66, 153, 225, 0.7), 0 0 20px rgba(66, 153, 225, 0.4);">
+                    Innovating at the <span class="text-blue-400 typing-effect" data-text="Intersection"></span> of Science & Tech
                 </h1>
-                <p class="text-xl sm:text-2xl mb-8 max-w-3xl mx-auto" style="color: var(--text-secondary);">
+                <p class="text-xl sm:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto">
                     Experienced Cloud & DevOps Engineer building secure, scalable, and resilient infrastructure.
                 </p>
-                <a href="#projects" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg" style="background-color: var(--accent-blue); --tw-bg-opacity: 1; box-shadow: 0 15px 30px var(--shadow-color);">
+                <a href="#projects" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
                     Explore My Projects
                 </a>
             </div>
         </section>
 
-        <section id="about" class="my-16 p-8 rounded-lg shadow-xl animated-section" style="background-color: rgba(var(--text-primary-rgb), var(--card-bg-opacity)); box-shadow: 0 15px 30px var(--shadow-color);">
-            <h2 class="text-4xl font-semibold mb-6 border-b-2 pb-2" style="color: var(--accent-blue); border-color: var(--accent-blue-dark);">About Me</h2>
-            <p class="text-lg leading-relaxed" style="color: var(--text-primary);">
+        <section id="about" class="my-16 p-8 bg-gray-800 bg-opacity-70 rounded-lg shadow-xl animated-section">
+            <h2 class="text-4xl font-semibold text-blue-300 mb-6 border-b-2 border-blue-500 pb-2">About Me</h2>
+            <p class="text-lg text-gray-200 leading-relaxed">
                 I am a passionate Cloud & DevOps Engineer with a proven track record in designing, deploying, and automating
                 secure, scalable, and resilient cloud infrastructure on both Azure and Google Cloud Platform (GCP).
                 My expertise spans across containerization with Kubernetes, CI/CD pipelines, infrastructure as code (IaC),
@@ -516,148 +370,64 @@
             </p>
         </section>
 
-        <section id="projects" class="my-16 p-8 rounded-lg shadow-xl animated-section" style="background-color: rgba(var(--text-primary-rgb), var(--card-bg-opacity)); box-shadow: 0 15px 30px var(--shadow-color);">
-            <h2 class="text-4xl font-semibold mb-6 border-b-2 pb-2" style="color: var(--accent-blue); border-color: var(--accent-blue-dark);">Projects</h2>
+        <section id="projects" class="my-16 p-8 bg-gray-800 bg-opacity-70 rounded-lg shadow-xl animated-section">
+            <h2 class="text-4xl font-semibold text-blue-300 mb-6 border-b-2 border-blue-500 pb-2">Projects</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="project-card p-6 rounded-lg shadow-md" style="border-color: var(--border-color); background-color: rgba(var(--text-primary-rgb), var(--card-bg-opacity));">
-                    <h3 class="text-2xl font-bold mb-2" style="color: var(--accent-blue);">Autonomous Medical Robot</h3>
-                    <p class="text-gray-300 leading-relaxed" style="color: var(--text-secondary);">
+                <div class="project-card bg-white bg-opacity-15 p-6 rounded-lg shadow-md text-white">
+                    <h3 class="text-2xl font-bold mb-2 text-blue-200">Autonomous Medical Robot</h3>
+                    <p class="text-gray-300 leading-relaxed">
                         Developed an autonomous medical robot integrating advanced features like
                         object detection, face recognition, SLAM (Simultaneous Localization and Mapping),
                         and precise pose estimation, designed for efficient operation in complex medical environments.
                     </p>
-                    <button class="read-more-btn mt-4 text-blue-400 hover:text-blue-300 transition duration-200 ease-in-out" style="color: var(--accent-blue);">Read More</button>
-                    <div class="project-details">
-                        <p class="text-sm text-gray-400 mt-2" style="color: var(--text-secondary);">
-                            This project involved deep learning models for real-time object identification,
-                            facial recognition for secure access, and advanced navigation algorithms
-                            to maneuver through hospital corridors. It utilized ROS (Robot Operating System)
-                            for modular development and integration of various sensor data.
-                        </p>
-                    </div>
                 </div>
-                <div class="project-card p-6 rounded-lg shadow-md" style="border-color: var(--border-color); background-color: rgba(var(--text-primary-rgb), var(--card-bg-opacity));">
-                    <h3 class="text-2xl font-bold mb-2" style="color: var(--accent-blue);">ETL Data Pipeline with Azure & Snowflake</h3>
-                    <p class="text-gray-300 leading-relaxed" style="color: var(--text-secondary);">
+                <div class="project-card bg-white bg-opacity-15 p-6 rounded-lg shadow-md text-white">
+                    <h3 class="text-2xl font-bold mb-2 text-blue-200">ETL Data Pipeline with Azure & Snowflake</h3>
+                    <p class="text-gray-300 leading-relaxed">
                         Engineered robust and scalable ETL (Extract, Transform, Load) data pipelines
-                        leveraging Azure services and Snowflake for data warehousing.
+                        leveraging Azure services and Snowflake for data warehousing. This project involved
+                        integrating diverse data sources, ensuring data quality, and building interactive
+                        dashboards for critical business insights.
                     </p>
-                    <button class="read-more-btn mt-4 text-blue-400 hover:text-blue-300 transition duration-200 ease-in-out" style="color: var(--accent-blue);">Read More</button>
-                    <div class="project-details">
-                        <p class="text-sm text-gray-400 mt-2" style="color: var(--text-secondary);">
-                            Built scalable pipelines using Azure Data Factory and Azure Databricks,
-                            integrated data sources from various APIs and databases, and implemented
-                            data quality checks. Visualized dashboards were created using Power BI
-                            to provide critical business insights.
-                        </p>
-                    </div>
                 </div>
-                <div class="project-card p-6 rounded-lg shadow-md" style="border-color: var(--border-color); background-color: rgba(var(--text-primary-rgb), var(--card-bg-opacity));">
-                    <h3 class="text-2xl font-bold mb-2" style="color: var(--accent-blue);">Kubernetes Cluster Automation (GCP)</h3>
-                    <p class="text-gray-300 leading-relaxed" style="color: var(--text-secondary);">
+                <div class="project-card bg-white bg-opacity-15 p-6 rounded-lg shadow-md text-white">
+                    <h3 class="text-2xl font-bold mb-2 text-blue-200">Kubernetes Cluster Automation (GCP)</h3>
+                    <p class="text-gray-300 leading-relaxed">
                         Automated the deployment and management of Kubernetes clusters on Google Cloud Platform (GCP)
-                        using Infrastructure as Code (IaC) principles.
+                        using Infrastructure as Code (IaC) principles. Implemented CI/CD pipelines for seamless
+                        application deployments and ensured high availability and fault tolerance.
                     </p>
-                    <button class="read-more-btn mt-4 text-blue-400 hover:text-blue-300 transition duration-200 ease-in-out" style="color: var(--accent-blue);">Read More</button>
-                    <div class="project-details">
-                        <p class="text-sm text-gray-400 mt-2" style="color: var(--text-secondary);">
-                            Implemented CI/CD pipelines with Jenkins and GitLab CI for seamless
-                            application deployments. Utilized Terraform for infrastructure provisioning
-                            and ensured high availability and fault tolerance through robust cluster configurations.
-                        </p>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="blog" class="my-16 p-8 rounded-lg shadow-xl animated-section" style="background-color: rgba(var(--text-primary-rgb), var(--card-bg-opacity)); box-shadow: 0 15px 30px var(--shadow-color);">
-            <h2 class="text-4xl font-semibold mb-6 border-b-2 pb-2" style="color: var(--accent-blue); border-color: var(--accent-blue-dark);">Blog</h2>
-            <p class="text-lg" style="color: var(--text-secondary);">
+        <section id="blog" class="my-16 p-8 bg-gray-800 bg-opacity-70 rounded-lg shadow-xl animated-section">
+            <h2 class="text-4xl font-semibold text-blue-300 mb-6 border-b-2 border-blue-500 pb-2">Blog</h2>
+            <p class="text-lg text-gray-300">
                 Stay tuned! I'm currently working on exciting content related to Cloud, DevOps, and emerging technologies.
                 Check back soon for insightful articles and tutorials.
             </p>
         </section>
 
-        <section id="contact" class="my-16 p-8 rounded-lg shadow-xl animated-section" style="background-color: rgba(var(--text-primary-rgb), var(--card-bg-opacity)); box-shadow: 0 15px 30px var(--shadow-color);">
-            <h2 class="text-4xl font-semibold mb-6 border-b-2 pb-2" style="color: var(--accent-blue); border-color: var(--accent-blue-dark);">Contact</h2>
-            <p class="text-lg mb-4" style="color: var(--text-secondary);">
+        <section id="contact" class="my-16 p-8 bg-gray-800 bg-opacity-70 rounded-lg shadow-xl animated-section">
+            <h2 class="text-4xl font-semibold text-blue-300 mb-6 border-b-2 border-blue-500 pb-2">Contact</h2>
+            <p class="text-lg text-gray-200 mb-4">
                 I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
                 Feel free to reach out!
             </p>
-            <ul class="text-xl space-y-4" style="color: var(--text-primary);">
-                <li><i class="fas fa-envelope mr-3" style="color: var(--accent-blue);"></i> bhargavtharunmadala05@gmail.com</li>
-                <li><i class="fab fa-linkedin mr-3" style="color: var(--accent-blue);"></i> <a href="https://www.linkedin.com/in/bhargav-tharun-madala-492b4814a" target="_blank" class="hover:underline transition duration-200 ease-in-out" style="color: var(--accent-blue);">LinkedIn Profile</a></li>
-                <li><i class="fab fa-github mr-3" style="color: var(--accent-blue);"></i> <a href="https://github.com/your-github-profile" target="_blank" class="hover:underline transition duration-200 ease-in-out" style="color: var(--accent-blue);">GitHub Profile</a></li>
+            <ul class="text-xl text-white space-y-4">
+                <li><i class="fas fa-envelope mr-3 text-blue-400"></i> bhargavtharunmadala05@gmail.com</li>
+                <li><i class="fab fa-linkedin mr-3 text-blue-400"></i> <a href="https://www.linkedin.com/in/bhargav-tharun-madala-492b4814a" target="_blank" class="text-blue-300 hover:underline transition duration-200 ease-in-out">LinkedIn Profile</a></li>
+                <li><i class="fab fa-github mr-3 text-blue-400"></i> <a href="https://github.com/your-github-profile" target="_blank" class="text-blue-300 hover:underline transition duration-200 ease-in-out">GitHub Profile</a></li>
             </ul>
         </section>
     </main>
 
-    <footer class="text-center py-6 bg-gray-900 text-sm relative z-10 shadow-inner" style="background-color: var(--bg-secondary); color: var(--text-secondary);">
+    <footer class="text-center py-6 bg-gray-900 text-sm text-gray-400 relative z-10 shadow-inner">
         &copy; 2025 Bhargav Tharun. All rights reserved.
     </footer>
 
-    <button id="scrollToTopBtn" aria-label="Scroll to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
     <script>
-        // Helper to get RGB values from CSS variables for rgba()
-        function getRgbFromHex(hex) {
-            let r = 0, g = 0, b = 0;
-            // Handle 3-digit hex
-            if (hex.length === 4) {
-                r = parseInt(hex[1] + hex[1], 16);
-                g = parseInt(hex[2] + hex[2], 16);
-                b = parseInt(hex[3] + hex[3], 16);
-            } else if (hex.length === 7) {
-                r = parseInt(hex.substring(1, 3), 16);
-                g = parseInt(hex.substring(3, 5), 16);
-                b = parseInt(hex.substring(5, 7), 16);
-            }
-            return `${r}, ${g}, ${b}`;
-        }
-
-        // Theme Toggle Logic
-        const themeToggleBtn = document.getElementById('themeToggleBtn');
-        const htmlElement = document.documentElement;
-        const currentTheme = localStorage.getItem('theme');
-
-        // Function to apply theme variables
-        function applyThemeVariables(theme) {
-            if (theme === 'light-theme') {
-                htmlElement.classList.remove('dark-theme');
-                htmlElement.classList.add('light-theme');
-                themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
-                // Update RGB variables for rgba() usage
-                htmlElement.style.setProperty('--text-primary-rgb', getRgbFromHex('#2d3748'));
-                htmlElement.style.setProperty('--accent-blue-rgb', getRgbFromHex('#3182ce'));
-            } else {
-                htmlElement.classList.remove('light-theme');
-                htmlElement.classList.add('dark-theme');
-                themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
-                // Update RGB variables for rgba() usage
-                htmlElement.style.setProperty('--text-primary-rgb', getRgbFromHex('#e2e8f0'));
-                htmlElement.style.setProperty('--accent-blue-rgb', getRgbFromHex('#4299e1'));
-            }
-        }
-
-        // Apply saved theme on load or default to dark
-        if (currentTheme) {
-            applyThemeVariables(currentTheme);
-        } else {
-            applyThemeVariables('dark-theme'); // Default
-        }
-
-        themeToggleBtn.addEventListener('click', () => {
-            if (htmlElement.classList.contains('light-theme')) {
-                applyThemeVariables('dark-theme');
-                localStorage.setItem('theme', 'dark-theme');
-            } else {
-                applyThemeVariables('light-theme');
-                localStorage.setItem('theme', 'light-theme');
-            }
-        });
-
         // Typing effect for the hero section
         document.addEventListener('DOMContentLoaded', () => {
             const typingElement = document.querySelector('.typing-effect');
@@ -705,123 +475,6 @@
                 const randomY = Math.floor(Math.random() * 30) - 15; // -15 to 15
                 el.style.setProperty('--float-x', randomX);
                 el.style.setProperty('--float-y', randomY);
-            });
-
-            // Mouse Trail Canvas
-            const mouseTrailCanvas = document.getElementById('mouseTrailCanvas');
-            const ctxTrail = mouseTrailCanvas.getContext('2d');
-            let trailParticles = [];
-            let mouseX = 0;
-            let mouseY = 0;
-
-            // Resize canvas to fill window
-            function resizeMouseTrailCanvas() {
-                mouseTrailCanvas.width = window.innerWidth;
-                mouseTrailCanvas.height = window.innerHeight;
-            }
-
-            // Particle constructor for mouse trail
-            class TrailParticle {
-                constructor(x, y, color) {
-                    this.x = x;
-                    this.y = y;
-                    this.size = Math.random() * 2 + 0.5; // Small size
-                    this.color = color;
-                    this.alpha = 1;
-                    this.velocity = {
-                        x: (Math.random() - 0.5) * 2, // Random initial velocity
-                        y: (Math.random() - 0.5) * 2
-                    };
-                }
-
-                draw() {
-                    ctxTrail.globalAlpha = this.alpha;
-                    ctxTrail.beginPath();
-                    ctxTrail.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctxTrail.fillStyle = this.color;
-                    ctxTrail.fill();
-                }
-
-                update() {
-                    this.x += this.velocity.x;
-                    this.y += this.velocity.y;
-                    this.alpha -= 0.02; // Fade out
-                    this.size *= 0.95; // Shrink
-                }
-            }
-
-            // Animation loop for mouse trail
-            function animateMouseTrail() {
-                requestAnimationFrame(animateMouseTrail);
-                ctxTrail.clearRect(0, 0, mouseTrailCanvas.width, mouseTrailCanvas.height);
-
-                for (let i = 0; i < trailParticles.length; i++) {
-                    trailParticles[i].update();
-                    if (trailParticles[i].alpha > 0.05 && trailParticles[i].size > 0.5) {
-                        trailParticles[i].draw();
-                    } else {
-                        trailParticles.splice(i, 1); // Remove faded particles
-                        i--;
-                    }
-                }
-            }
-
-            // Event listener for mouse movement
-            window.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                // Add new particles at mouse position
-                trailParticles.push(new TrailParticle(mouseX, mouseY, 'rgba(129, 230, 217, 0.8)')); // Teal glow
-            });
-
-            // Event listener for window resize
-            window.addEventListener('resize', resizeMouseTrailCanvas);
-
-            // Initial setup for mouse trail
-            resizeMouseTrailCanvas();
-            animateMouseTrail();
-
-            // Parallax effect for background elements
-            const bgElementsContainer = document.querySelector('.bg-elements-container');
-            window.addEventListener('scroll', () => {
-                const scrollY = window.pageYOffset;
-                // Adjust the multiplier for more or less parallax effect
-                bgElementsContainer.style.transform = `translateY(${scrollY * 0.1}px)`;
-            });
-
-            // Scroll to Top Button Logic
-            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) { // Show button after scrolling 300px
-                    scrollToTopBtn.classList.add('show');
-                } else {
-                    scrollToTopBtn.classList.remove('show');
-                }
-            });
-
-            scrollToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-
-            // Expandable Project Cards Logic
-            document.querySelectorAll('.project-card').forEach(card => {
-                const readMoreBtn = card.querySelector('.read-more-btn');
-                const projectDetails = card.querySelector('.project-details');
-
-                if (readMoreBtn && projectDetails) {
-                    readMoreBtn.addEventListener('click', () => {
-                        projectDetails.classList.toggle('expanded');
-                        if (projectDetails.classList.contains('expanded')) {
-                            readMoreBtn.textContent = 'Read Less';
-                        } else {
-                            readMoreBtn.textContent = 'Read More';
-                        }
-                    });
-                }
             });
         });
     </script>
