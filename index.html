@@ -1,46 +1,63 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Madala Bhargav Tharun - Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Bhargav Tharun | Cloud & DevOps Engineer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-<body>
-  <header>
-    <h1>Madala Bhargav Tharun</h1>
-    <p>Cloud & DevOps Engineer | Azure | GCP | Kubernetes | CI/CD</p>
+<body class="bg-gray-100 text-gray-900">
+  <header class="bg-blue-900 text-white py-6 shadow-md">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl font-bold">Madala Bhargav Tharun</h1>
+      <p class="text-lg">Cloud & DevOps Engineer | Azure | GCP | Kubernetes</p>
+    </div>
   </header>
-  <nav>
-    <a href="#about">About</a> |
-    <a href="#projects">Projects</a> |
-    <a href="#blog">Blog</a> |
-    <a href="#contact">Contact</a>
+
+  <nav class="bg-blue-700 text-white text-center py-2 sticky top-0 z-10">
+    <a href="#about" class="mx-4 hover:underline">About</a>
+    <a href="#projects" class="mx-4 hover:underline">Projects</a>
+    <a href="#blog" class="mx-4 hover:underline">Blog</a>
+    <a href="#contact" class="mx-4 hover:underline">Contact</a>
   </nav>
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>Experienced Azure & GCP Cloud and DevOps Engineer with a strong background in designing, deploying, and automating secure, scalable, and resilient cloud infrastructure.</p>
+
+  <main class="container mx-auto p-6">
+    <section id="about" class="my-8">
+      <h2 class="text-2xl font-semibold text-blue-800 mb-4">About Me</h2>
+      <p class="text-lg">Experienced Azure & GCP Cloud and DevOps Engineer with a strong background in designing, deploying, and automating secure, scalable, and resilient cloud infrastructure.</p>
     </section>
-    <section id="projects">
-      <h2>Projects</h2>
-      <ul>
-        <li><strong>Medical Robot SLAM Project</strong>: Object detection, 3-D coordinate extraction, and pose estimation using edge detection and regression.</li>
+
+    <section id="projects" class="my-8">
+      <h2 class="text-2xl font-semibold text-blue-800 mb-4">Projects</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white p-4 rounded-lg shadow">
+          <h3 class="text-xl font-bold">Autonomous Medical Robot</h3>
+          <p>Object detection, face recognition, SLAM, and pose estimation in a medical setting.</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow">
+          <h3 class="text-xl font-bold">ETL Data Pipeline with Azure & Snowflake</h3>
+          <p>Built scalable pipelines, integrated data sources, and visualized dashboards for critical insights.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog" class="my-8">
+      <h2 class="text-2xl font-semibold text-blue-800 mb-4">Blog</h2>
+      <p class="text-lg text-gray-600">Coming soon...</p>
+    </section>
+
+    <section id="contact" class="my-8">
+      <h2 class="text-2xl font-semibold text-blue-800 mb-4">Contact</h2>
+      <ul class="text-lg">
+        <li><i class="fas fa-envelope mr-2 text-blue-700"></i> bhargavtharunmadala05@gmail.com</li>
+        <li><i class="fab fa-linkedin mr-2 text-blue-700"></i> <a href="https://www.linkedin.com/in/bhargav-tharun-madala-492b4814a" target="_blank" class="text-blue-700 underline">LinkedIn Profile</a></li>
       </ul>
     </section>
-    <section id="blog">
-      <h2>Blog</h2>
-      <p>Coming soon...</p>
-    </section>
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: bhargavtharunmadala05@gmail.com</p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/bhargav-tharun-madala-492b4814a" target="_blank">Profile</a></p>
-    </section>
   </main>
-  <footer>
-    <p>&copy; 2025 Bhargav Tharun</p>
+
+  <footer class="text-center py-4 bg-gray-200 text-sm text-gray-600">
+    &copy; 2025 Bhargav Tharun. All rights reserved.
   </footer>
 </body>
 </html>
